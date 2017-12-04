@@ -177,6 +177,8 @@ bool GestFichier::EcrireTrajet (Trajet *unTrajet, string &texteAEcrire, TypeTraj
 			{
 				TrajetSimple *tmp = dynamic_cast<TrajetSimple*> ( trajetCompose->GetLesTrajets()->GetTrajet(y) );
 				EcrireTrajetSimple(tmp, texteAEcrire);
+				if (y < trajetCompose->GetLesTrajets()->GetLongueur() - 1)
+					texteAEcrire += "-----\n";
 			}
 			texteAEcrire += "\n";
 
