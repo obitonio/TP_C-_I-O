@@ -160,6 +160,7 @@ bool GestFichier::EcrireTrajet (Trajet *unTrajet, string &texteAEcrire, TypeTraj
 	if (trajetSimple != nullptr && (typeTrajet == TypeTrajet::SIMPLE || typeTrajet == TypeTrajet::DEUX) )
 	{
 		texteAEcrire += "=====\n";
+		texteAEcrire += "Type: TS\n";
 		EcrireTrajetSimple(trajetSimple, texteAEcrire);
 		texteAEcrire += "\n";
 
@@ -171,6 +172,7 @@ bool GestFichier::EcrireTrajet (Trajet *unTrajet, string &texteAEcrire, TypeTraj
 		if (trajetCompose != nullptr && (typeTrajet == TypeTrajet::COMPOSE || typeTrajet == TypeTrajet::DEUX))
 		{
 			texteAEcrire += "=====\n";
+			texteAEcrire += "Type: TC\n";
 			for (int y=0; y<trajetCompose->GetLesTrajets()->GetLongueur(); y++)
 			{
 				TrajetSimple *tmp = dynamic_cast<TrajetSimple*> ( trajetCompose->GetLesTrajets()->GetTrajet(y) );

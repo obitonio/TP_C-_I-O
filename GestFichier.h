@@ -89,7 +89,7 @@ class GestFichier
 		// Mode d'emploi :
 		//	Ecrit les métadonnées dans l'entete du fichier de sauvegarde
 		// Paramètres :
-		//	nbTrajets : le nombre de trajet à indiquer en metadonnées
+		//	nbTrajets : le nombre de trajet à indiquer en metadonnées<
 		//	critereSauvegarde : le critere de sauvegarde à indiquer en metadonnées
 
 	private:
