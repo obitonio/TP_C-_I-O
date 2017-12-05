@@ -16,11 +16,11 @@ using namespace std;
 
 //--------------------------------------------------------------------------
 //fonction main
-//   Point d'entrée du programme
+//   Point d'entré du programme
 //--------------------------------------------------------------------------
 
 int main() {
-
+	/*
 	Collection maCollection(100);
 	GestFichier gestFichier(maCollection);
 
@@ -48,8 +48,8 @@ int main() {
 	gestFichier.sauvegarder("test2.txt", TypeTrajet::COMPOSE);
 	gestFichier.sauvegarder("test3.txt", "Paris", "");
 	gestFichier.sauvegarder("test4.txt", 2, 4);
+	*/
 
-	/*
 
 	Catalogue ctl;
 	int choix = 0;
@@ -96,14 +96,13 @@ int main() {
 			ctl.Afficher();
 			break;
 		case 5:
-			ctl.ChoisirCritere(1);
+			ctl.ChoisirCritere(TypeTraitementFichier::SAUVEGARDE);
 			break;
 		case 6:
-			ctl.ChoisirCritere(2);
+			ctl.ChoisirCritere(TypeTraitementFichier::RESTAURATION);
 			break;
 		}
 	}
 
 	return 0;
-	*/
 }

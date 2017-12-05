@@ -183,6 +183,7 @@ bool GestFichier::EcrireTrajet (Trajet *unTrajet, string &texteAEcrire, TypeTraj
 			texteAEcrire += "\n";
 
 			resultat = true;
+
 		}
 	}
 

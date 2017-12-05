@@ -20,6 +20,10 @@
 //------------------------------------------------------------------------
 
 
+enum TypeTraitementFichier {
+	SAUVEGARDE, RESTAURATION
+};
+
 class Catalogue {
 
 	//----------------------------------------------------------------- PUBLIC
@@ -41,10 +45,10 @@ class Catalogue {
 		// Si type = 1 alors le trajet saisit sera de type TrajetSimple
 		// Si type = 2 alors le trajet saisit sera de type TrajetCompose
 
-		void ChoisirCritere(int type);
+		void ChoisirCritere(TypeTraitementFichier typeTraitementFichier);
 		//Mode d'emploi :
 		//	Demande à l'utilisateur de saisir les paramètres de sauvegarde ou restauration et lance celle-ci
-		//  parametre type : 1 pour sauvegarde / 2 pour restauration
+		//  parametre typeTraitementFichier : pour déterminer si l'ont effectue une sauvegarde ou restauration
 
 		void ClearScreen();
 		// Mode d'emploi :
