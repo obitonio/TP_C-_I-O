@@ -1,10 +1,3 @@
-/*
- * Catalogue.cpp
- *
- *  Created on: 2 oct. 2017
- *      Author: amathat
- */
-
 //---------- Réalisation de la classe Catalogue (fichier Catalogue.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
@@ -21,13 +14,9 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-
 void Catalogue::Afficher()
 {
 	m_lesTrajets.Afficher();
-
-	this->Attendre();
 } //----- Fin de Afficher()
 
 void Catalogue::Chercher()
@@ -66,7 +55,6 @@ void Catalogue::Chercher()
 
 void Catalogue::Ajouter(int type)
 {
-
 	int continuer = 1;
 	int nbNouveauxTrajets = 0;
 	char villeDepart[50];
@@ -81,8 +69,9 @@ void Catalogue::Ajouter(int type)
 
 	while (continuer)
 	{
+
 		if (nbNouveauxTrajets > 0)
-				cout << endl;
+			cout << endl;
 
 		cout << "========================  Ajouter un trajet  ========================" << endl;
 		mt = 0;
@@ -171,28 +160,24 @@ void Catalogue::ChoisirCritere(TypeTraitementFichier typeTraitementFichier)
 	{
 		choix = 0;
 
-		cout << "========================  " << nomType << " ========================" << endl;
+		cout << "========================  " << nomType << "  ========================" << endl;
 		cout << "Types de " << nomType << ": " << endl;
 		cout << "1. Sans critère de sélection" << endl;
 		cout << "2. Selon le type des trajets" << endl;
 		cout << "3. Selon la ville de départ et / ou la ville d'arrivée" << endl;
 		cout << "4. Selon une séléction de trajets" << endl;
 		cout << "5. Retour au menu" << endl;
-
 		while (choix < 1 || choix > nbChoix)
 		{
 			cout << "Saisir un chiffre : ";
 			cin >>choixBuffer;
 			choix = int(choixBuffer[0]) % 48;
 		}
-
-		if (choix >= 1 && choix < nbChoix)
-		{
+		if (choix >= 1 && choix < nbChoix){
 			cout << "Nom du fichier à traiter : ";
 			cin >> nomFichier;
 			cout << endl;
 		}
-
 		switch (choix)
 		{
 		case 1: // ===== Sans critère de selection
@@ -201,7 +186,9 @@ void Catalogue::ChoisirCritere(TypeTraitementFichier typeTraitementFichier)
 				m_GestFichier.sauvegarder(nomFichier);
 			}
 			else if (typeTraitementFichier == TypeTraitementFichier::RESTAURATION) // Restauration
-			{}
+			{
+				m_GestFichier.charger(nomFichier, DEUX);
+			}
 			break;
 		case 2: // ===== Selon le type des trajets
 			int typeTrajet;
@@ -209,12 +196,23 @@ void Catalogue::ChoisirCritere(TypeTraitementFichier typeTraitementFichier)
 			cout << "Pour les trajets simple (1) ou composé (2) ? ";
 			cin >> typeTrajet;
 
-			if (typeTraitementFichier == TypeTraitementFichier::SAUVEGARDE) // Sauvegarde
+			if (typeTraitementFichier == TypeTraitementFichier::SAUVEGARDE)//Sauvgarde
 			{
-				m_GestFichier.sauvegarder(nomFichier, TypeTrajet(typeTrajet+1)); // On ajoute 1 car sur base 0 / 1 avec entrées 1 / 2
+				m_GestFichier.sauvegarder(nomFichier, TypeTrajet(typeTrajet - 1));
+				// On enelve 1 car sur base 0 / 1 avec entrées 1 / 2
 			}
 			else if (typeTraitementFichier == TypeTraitementFichier::RESTAURATION) // Restauration
-			{}
+			{
+				TypeTrajet tyTrajet = DEUX;
+				if(typeTrajet == 1){
+					tyTrajet = SIMPLE;
+				}else if(typeTrajet == 2){
+					tyTrajet = COMPOSE;
+				}else{
+					cerr << "Saisie unvalide, forcer sur la valeur par défaut (DEUX)" << endl;
+				}
+				m_GestFichier.charger("test.txt", tyTrajet);
+			}
 			break;
 		case 3: // ===== Selon la ville de départ et / ou la ville d'arrivée
 
@@ -226,13 +224,15 @@ void Catalogue::ChoisirCritere(TypeTraitementFichier typeTraitementFichier)
 
 			if (typeTraitementFichier == TypeTraitementFichier::SAUVEGARDE) // Sauvegarde
 			{
-				villeDepart = (villeDepart.compare("0") == 0) ? "": villeDepart;
-				villeArrivee = (villeArrivee.compare("0") == 0) ? "": villeArrivee;
-
-				m_GestFichier.sauvegarder(nomFichier, villeDepart, villeArrivee);
+					villeDepart = (villeDepart.compare("0") == 0) ? "": villeDepart;
+					villeArrivee = (villeArrivee.compare("0") == 0) ? "" : villeArrivee;
+					m_GestFichier.sauvegarder(nomFichier, villeDepart, villeArrivee);
 			}
-			else if (typeTraitementFichier == TypeTraitementFichier::RESTAURATION) // Restauration
-			{}
+			else if (typeTraitementFichier == TypeTraitementFichier::RESTAURATION) {
+				villeDepart = (villeDepart.compare("0") == 0) ? "" : villeDepart;
+				villeArrivee = (villeArrivee.compare("0") == 0) ? "" : villeArrivee;
+				m_GestFichier.charger(nomFichier, villeDepart, villeArrivee);
+			}
 			break;
 		case 4: // ===== Selon une selection de trajet
 			int n = 0;
@@ -254,7 +254,10 @@ void Catalogue::ChoisirCritere(TypeTraitementFichier typeTraitementFichier)
 				m_GestFichier.sauvegarder(nomFichier, n, m);
 			}
 			else if (typeTraitementFichier == TypeTraitementFichier::RESTAURATION) // Restauration
-			{}
+			{
+				m_GestFichier.charger(nomFichier, n, m);
+			}
+
 			break;
 		}
 	}
@@ -340,32 +343,14 @@ Collection *Catalogue::TrouverVille(Trajet *t, char *ville)
 Catalogue::Catalogue()
 : m_lesTrajets(100), m_GestFichier(m_lesTrajets)
 {
-#ifndef MAP
-	cout << "Début constructeur de Catalogue..." << endl;
-	cout << "Insertion jeu d'essai ..." << endl;
-	m_lesTrajets.Ajouter(new TrajetSimple("Lyon", "Paris", MoyenTransport::AUTOCAR));
-	m_lesTrajets.Ajouter(new TrajetSimple("Lyon", "Strasbourg", MoyenTransport::TRAIN));
-	m_lesTrajets.Ajouter(new TrajetSimple("Lyon", "Rouen", MoyenTransport::BATEAU));
-
-	TrajetCompose* tc1 = new TrajetCompose(10);
-	tc1->Ajouter(new TrajetSimple("Paris", "Rouen", MoyenTransport::BATEAU));
-	tc1->Ajouter(new TrajetSimple("Rouen", "Bordeaux", MoyenTransport::AVION));
-	tc1->Ajouter(new TrajetSimple("Bordeaux", "Montpellier", MoyenTransport::AUTOCAR));
-	m_lesTrajets.Ajouter(tc1);
-
-	m_lesTrajets.Ajouter(new TrajetSimple("Paris", "Montpellier", MoyenTransport::TRAIN));
-
-	TrajetCompose* tc2 = new TrajetCompose(10);
-	tc2->Ajouter(new TrajetSimple("Strasbourg", "Rouen", MoyenTransport::BATEAU));
-	tc2->Ajouter(new TrajetSimple("Rouen", "Lyon", MoyenTransport::AVION));
-	tc2->Ajouter(new TrajetSimple("Lyon", "Nimes", MoyenTransport::AUTOCAR));
-	tc2->Ajouter(new TrajetSimple("Nimes", "Montpellier", MoyenTransport::AUTOCAR));
-	m_lesTrajets.Ajouter(tc2);
-
-#endif
+	#if defined (MAP)
+    cout << "Appel constructeur [ Catalogue ]" << endl;
+  #endif
 } //----- Fin de Catalogue()
 
 Catalogue::~Catalogue()
 {
-
+	#if defined (MAP)
+    cout << "Appel destructeur [ Catalogue ]" << endl;
+  #endif
 } //----- Fin de ~Catalogue()
