@@ -79,7 +79,7 @@ Trajet *Collection::GetTrajet(int index)
 Collection::Collection(int nbElements)
 : m_courant(0), m_max(nbElements)
 {
-	#ifndef MAP
+	#if defined (MAP)
 		cout << "Appel constructeur [ Collection ] nbElements = " << nbElements << endl;
 	#endif
 	m_lesTrajets = new Trajet *[nbElements];
@@ -88,8 +88,8 @@ Collection::Collection(int nbElements)
 //------------destructeur-------------------
 Collection::~Collection()
 {
-	#ifndef MAP
-		cout << "Appel destructeur [ TrajetCompose ]" << endl;
+	#if defined (MAP)
+		cout << "Appel destructeur [ Collection ]" << endl;
 	#endif
 
 	for (int i=0; i<m_courant; i++)

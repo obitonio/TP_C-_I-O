@@ -1,4 +1,4 @@
-/*
+	/*
  * Catalogue.h
  *
  *  Created on: 2 oct. 2017
@@ -19,12 +19,14 @@
 //  Trajets
 //------------------------------------------------------------------------
 
-
-enum TypeTraitementFichier {
-	SAUVEGARDE, RESTAURATION
+enum TypeTraitementFichier
+{
+	SAUVEGARDE,
+	RESTAURATION
 };
 
-class Catalogue {
+class Catalogue
+{
 
 	//----------------------------------------------------------------- PUBLIC
 	public:
@@ -32,23 +34,24 @@ class Catalogue {
 	//----------------------------------------------------- Méthodes publiques
 
 		void Afficher();
-	    // Mode d'emploi :
-	    // Affiche tous les Trajets du Catalogue
+		// Mode d'emploi :
+		// Affiche tous les Trajets du Catalogue
 
 		void Chercher();
-	    // Mode d'emploi :
-	    // Recherche des combinaisons de Trajet pour partir d'une ville A et arriver à une ville B
+		// Mode d'emploi :
+		// Recherche des combinaisons de Trajet pour partir d'une ville A et arriver à une ville B
 
 		void Ajouter(int type);
-	    // Mode d'emploi :
-	    // Lance le menu d'ajout d'un Trajet
+		// Mode d'emploi :
+		// Lance le menu d'ajout d'un Trajet
 		// Si type = 1 alors le trajet saisit sera de type TrajetSimple
 		// Si type = 2 alors le trajet saisit sera de type TrajetCompose
 
 		void ChoisirCritere(TypeTraitementFichier typeTraitementFichier);
 		//Mode d'emploi :
 		//	Demande à l'utilisateur de saisir les paramètres de sauvegarde ou restauration et lance celle-ci
-		//  parametre typeTraitementFichier : pour déterminer si l'ont effectue une sauvegarde ou restauration
+		//parametre :
+		//	typeTraitementFichier : pour déterminer si l'ont effectue une sauvegarde ou restauration
 
 		void ClearScreen();
 		// Mode d'emploi :
@@ -82,9 +85,5 @@ class Catalogue {
 	//----------------------------------------------------- Attributs protégées
 		Collection m_lesTrajets;
 		GestFichier m_GestFichier;
-
-
-
 };
-
 #endif /* CATALOGUE_H_ */

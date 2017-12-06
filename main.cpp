@@ -19,8 +19,8 @@ using namespace std;
 //   Point d'entré du programme
 //--------------------------------------------------------------------------
 
-int main() {
-
+int	main()
+{
 	Catalogue ctl;
 	int choix = 0;
 	int nbChoix = 7;
@@ -51,7 +51,6 @@ int main() {
 			choix = int(choixBuffer[0]) % 48;
 		}
 		cout << endl;
-
 		switch (choix)
 		{
 		case 1:
@@ -74,6 +73,5 @@ int main() {
 			break;
 		}
 	}
-
 	return 0;
 }

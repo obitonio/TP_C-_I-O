@@ -50,7 +50,6 @@ void Catalogue::Chercher()
 	if (c->GetLongueur() == 0)
 		cout << "Aucun trajet trouvé." << endl;
 
-	this->Attendre();
 } //----- Fin de Chercher()
 
 void Catalogue::Ajouter(int type)
@@ -69,9 +68,9 @@ void Catalogue::Ajouter(int type)
 
 	while (continuer)
 	{
-
-		if (nbNouveauxTrajets > 0)
+		if (nbNouveauxTrajets > 0){
 			cout << endl;
+		}
 
 		cout << "========================  Ajouter un trajet  ========================" << endl;
 		mt = 0;
@@ -159,14 +158,14 @@ void Catalogue::ChoisirCritere(TypeTraitementFichier typeTraitementFichier)
 	while (choix != nbChoix)
 	{
 		choix = 0;
-
-		cout << "========================  " << nomType << "  ========================" << endl;
-		cout << "Types de " << nomType << ": " << endl;
-		cout << "1. Sans critère de sélection" << endl;
-		cout << "2. Selon le type des trajets" << endl;
-		cout << "3. Selon la ville de départ et / ou la ville d'arrivée" << endl;
-		cout << "4. Selon une séléction de trajets" << endl;
-		cout << "5. Retour au menu" << endl;
+		cout << endl;
+		cout << "======================== " << nomType << " ========================" << endl;
+		cout << "\t1. Sans critère de sélection" << endl;
+		cout << "\t2. Selon le type des trajets" << endl;
+		cout << "\t3. Selon la ville de départ et / ou la ville d'arrivée" << endl;
+		cout << "\t4. Selon une séléction de trajets" << endl;
+		cout << "\t5. Retour au menu" << endl;
+		cout << "===================================================================" << endl;
 		while (choix < 1 || choix > nbChoix)
 		{
 			cout << "Saisir un chiffre : ";
@@ -196,10 +195,9 @@ void Catalogue::ChoisirCritere(TypeTraitementFichier typeTraitementFichier)
 			cout << "Pour les trajets simple (1) ou composé (2) ? ";
 			cin >> typeTrajet;
 
-			if (typeTraitementFichier == TypeTraitementFichier::SAUVEGARDE)//Sauvgarde
+			if (typeTraitementFichier == TypeTraitementFichier::SAUVEGARDE) // Sauvgarde
 			{
-				m_GestFichier.sauvegarder(nomFichier, TypeTrajet(typeTrajet - 1));
-				// On enelve 1 car sur base 0 / 1 avec entrées 1 / 2
+				m_GestFichier.sauvegarder(nomFichier, TypeTrajet(typeTrajet - 1)); 
 			}
 			else if (typeTraitementFichier == TypeTraitementFichier::RESTAURATION) // Restauration
 			{
@@ -211,7 +209,7 @@ void Catalogue::ChoisirCritere(TypeTraitementFichier typeTraitementFichier)
 				}else{
 					cerr << "Saisie unvalide, forcer sur la valeur par défaut (DEUX)" << endl;
 				}
-				m_GestFichier.charger("test.txt", tyTrajet);
+				m_GestFichier.charger(nomFichier, tyTrajet);
 			}
 			break;
 		case 3: // ===== Selon la ville de départ et / ou la ville d'arrivée

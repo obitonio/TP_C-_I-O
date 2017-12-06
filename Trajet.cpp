@@ -23,14 +23,14 @@ const char * Trajet :: GetVilleB(void)
 //------------constructeurs-----------------
 Trajet :: Trajet()
 {
-  #ifndef MAP
+  #if defined (MAP)
     cout << "Appel constructeur [ Trajet ]" << endl;
   #endif
 }
 //------------destructeur-----------------
 Trajet :: ~Trajet()
 {
-  #ifndef MAP
+  #if defined (MAP)
     cout << "Appel destructeur [ Trajet ]" << endl;
   #endif
 }
