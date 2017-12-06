@@ -20,36 +20,6 @@ using namespace std;
 //--------------------------------------------------------------------------
 
 int main() {
-	/*
-	Collection maCollection(100);
-	GestFichier gestFichier(maCollection);
-
-	maCollection.Ajouter(new TrajetSimple("Lyon", "Paris", MoyenTransport::AUTOCAR));
-	maCollection.Ajouter(new TrajetSimple("Lyon", "Strasbourg", MoyenTransport::TRAIN));
-	maCollection.Ajouter(new TrajetSimple("Lyon", "Rouen", MoyenTransport::BATEAU));
-
-	TrajetCompose* tc1 = new TrajetCompose(10);
-	tc1->Ajouter(new TrajetSimple("Paris", "Rouen", MoyenTransport::BATEAU));
-	tc1->Ajouter(new TrajetSimple("Rouen", "Bordeaux", MoyenTransport::AVION));
-	tc1->Ajouter(new TrajetSimple("Bordeaux", "Montpellier", MoyenTransport::AUTOCAR));
-	maCollection.Ajouter(tc1);
-
-	maCollection.Ajouter(new TrajetSimple("Paris", "Montpellier", MoyenTransport::TRAIN));
-
-	TrajetCompose* tc2 = new TrajetCompose(10);
-	tc2->Ajouter(new TrajetSimple("Strasbourg", "Rouen", MoyenTransport::BATEAU));
-	tc2->Ajouter(new TrajetSimple("Rouen", "Lyon", MoyenTransport::AVION));
-	tc2->Ajouter(new TrajetSimple("Lyon", "Nimes", MoyenTransport::AUTOCAR));
-	tc2->Ajouter(new TrajetSimple("Nimes", "Montpellier", MoyenTransport::AUTOCAR));
-	maCollection.Ajouter(tc2);
-
-
-	gestFichier.sauvegarder("test.txt");
-	gestFichier.sauvegarder("test2.txt", TypeTrajet::COMPOSE);
-	gestFichier.sauvegarder("test3.txt", "Paris", "");
-	gestFichier.sauvegarder("test4.txt", 2, 4);
-	*/
-
 
 	Catalogue ctl;
 	int choix = 0;
@@ -60,8 +30,8 @@ int main() {
 	while (choix != nbChoix)
 	{
 		choix = 0;
-		ctl.ClearScreen();
 
+		cout << endl;
 		cout << "=====================================================================" << endl;
 		cout << "------------------------ Catalogue transport ------------------------" << endl;
 		cout << "=====================================================================" << endl;
@@ -80,6 +50,7 @@ int main() {
 			cin >>choixBuffer;
 			choix = int(choixBuffer[0]) % 48;
 		}
+		cout << endl;
 
 		switch (choix)
 		{
