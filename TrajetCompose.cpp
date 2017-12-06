@@ -38,7 +38,7 @@ Collection* TrajetCompose :: GetLesTrajets()
 TrajetCompose :: TrajetCompose(int nbElements)
 : m_nbElements (nbElements), m_nbActu (0), m_villeA(0), m_villeB(0)
 {
-  #if defined (MAP)
+ #ifndef MAP
     cout << "Appel constructeur [ TrajetCompose ] nbElements = " << nbElements << endl;
   #endif
   m_laCollection = new Collection(m_nbElements);
@@ -46,7 +46,7 @@ TrajetCompose :: TrajetCompose(int nbElements)
 TrajetCompose :: TrajetCompose(Collection * laCollection)
 : m_laCollection (laCollection), m_nbActu (0), m_nbElements(0)
 {
-  #if defined (MAP)
+ #ifndef MAP
     cout << "Appel constructeur [ TrajetCompose ] collection" << endl;
   #endif
 
@@ -61,7 +61,7 @@ TrajetCompose :: TrajetCompose(Collection * laCollection)
 //------------destructeur-------------------
 TrajetCompose :: ~TrajetCompose()
 {
-  #if defined (MAP)
+ #ifndef MAP
     cout << "Appel destructeur [ TrajetCompose ]" << endl;
   #endif
   delete m_laCollection;

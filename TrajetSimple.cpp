@@ -88,7 +88,7 @@ const MoyenTransport TrajetSimple :: GetMoyenTransport(void)
 TrajetSimple :: TrajetSimple(const char * villeA, const char * villeB, MoyenTransport mt)
 :m_mt (mt)
 {
-  #if defined (MAP)
+  #ifndef MAP
     cout << "Appel constructeur [ TrajetSimple ]" << endl;
   #endif
 
@@ -102,7 +102,7 @@ TrajetSimple :: TrajetSimple(const char * villeA, const char * villeB, MoyenTran
 //------------destructeur-------------------
 TrajetSimple :: ~TrajetSimple()
 {
-  #if defined (MAP)
+  #ifndef MAP
     cout << "Appel destructeur [ TrajetSimple ]" << endl;
   #endif
 

@@ -66,9 +66,6 @@ void Catalogue::Chercher()
 
 void Catalogue::Ajouter(int type)
 {
-	cout << "================================" << endl;
-	cout << "\tAjouter un trajet" << endl;
-	cout << "================================" << endl;
 
 	int continuer = 1;
 	int nbNouveauxTrajets = 0;
@@ -84,8 +81,9 @@ void Catalogue::Ajouter(int type)
 
 	while (continuer)
 	{
+		if (nbNouveauxTrajets > 0)
+				cout << endl;
 
-		this->ClearScreen();
 		cout << "========================  Ajouter un trajet  ========================" << endl;
 		mt = 0;
 		cout << endl << "Ville de départ : ";
@@ -173,7 +171,7 @@ void Catalogue::ChoisirCritere(TypeTraitementFichier typeTraitementFichier)
 	{
 		choix = 0;
 
-		cout << "=====================================================================" << endl;
+		cout << "========================  " << nomType << " ========================" << endl;
 		cout << "Types de " << nomType << ": " << endl;
 		cout << "1. Sans critère de sélection" << endl;
 		cout << "2. Selon le type des trajets" << endl;
